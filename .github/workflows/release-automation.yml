@@ -3,7 +3,7 @@ name: release images using semantic tag versioning
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   setup-build-deploy:
