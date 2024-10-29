@@ -3,14 +3,4 @@ spring:
     name: service-account
 
 server:
-  servlet:
-    context-path: /account
   port: 8661
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    prefer-ip-address: true
-    hostname: localhost

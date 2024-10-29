@@ -4,12 +4,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
-ext {
-    springCloudVersion = "2023.0.3"
-}
-
 group = 'org.sesac'
-version = '0.0.1'
 
 java {
     toolchain {
@@ -23,16 +18,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
-    }
 }
 
 tasks.named('test') {
