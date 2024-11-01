@@ -1,8 +1,10 @@
 spring:
   application:
     name: service-account
+  config:
+    import:
+      - "optional:classpath:/config/cloud.yml"
+      - "optional:classpath:/config/database.yml"
 
-server:
-  port: 8661
-  servlet:
-    context-path: /account
+  profiles:
+    active: ${PROFILE:dev}

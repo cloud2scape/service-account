@@ -1,0 +1,18 @@
+server:
+  port: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.loadbalancer: TRACE
