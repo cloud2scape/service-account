@@ -1,4 +1,4 @@
-package org.sesac.market;
+package org.sesac.market.account;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

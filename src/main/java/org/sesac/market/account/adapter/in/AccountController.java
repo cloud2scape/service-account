@@ -1,4 +1,4 @@
-package org.sesac.market.controller;
+package org.sesac.market.account.adapter.in;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
