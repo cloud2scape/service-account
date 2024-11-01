@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      enabled: true
+      config:
+        enabled: true
+        name: gateway-config
+        namespace: default
+      loadbalancer:
+        mode: service
