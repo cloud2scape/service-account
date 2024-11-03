@@ -21,3 +21,10 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
       ejb:
         naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+  messages:
+    basename: messages/exception
+    encoding: UTF-8
+    always-use-message-format: true
+    use-code-as-default-message: true
+    fallback-to-system-locale: true
