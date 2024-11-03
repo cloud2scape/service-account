@@ -3,6 +3,11 @@ spring:
     activate:
       on-profile: prod
 
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
 eureka:
   client:
     register-with-eureka: false
