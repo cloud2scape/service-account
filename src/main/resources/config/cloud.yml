@@ -1,5 +1,5 @@
 server:
-  port: 8661
+  port: 0
 
 management:
   endpoints:

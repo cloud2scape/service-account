@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    url: "jdbc:mysql://${ACCOUNT_DB_HOST:localhost}:${ACCOUNT_DB_PORT:3316}/${ACCOUNT_DB_DATABASE:account}"
-    username: ${ACCOUNT_DB_USER:root}
-    password: ${ACCOUNT_DB_PASSWORD:root}
-    driver-class-name: com.mysql.cj.jdbc.Driver
