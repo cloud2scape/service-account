@@ -9,15 +9,16 @@ import org.sesac.market.account.domain.exception.BizException;
 import org.sesac.market.account.domain.model.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class AccountService implements AccountCommand, AccountQuery {
     private final AccountPort port;
 
     @Override
+    @Transactional
     public Account create(CreateAccountRequest request) {
         Account account = Account.builder()
                 .name(request.name())
@@ -32,20 +33,21 @@ public class AccountService implements AccountCommand, AccountQuery {
     }
 
     @Override
+    @Transactional
     public Account update(UpdateAccountRequest request) {
-        Account account = Account.builder()
+        Account account = port.get(Account.builder()
                 .id(request.id())
                 .name(request.name())
-                .build();
+                .build()
+        ).orElseThrow(BizException.NoneExists::new);
 
-        if (port.exists(account.getId())) {
-            throw new BizException.NoneExists();
-        }
-
-        return port.update(account);
+        return account.update(Account.builder()
+                .name(request.name())
+                .build());
     }
 
     @Override
+    @Transactional
     public boolean delete(DeleteAccountRequest request) {
         Account account = Account.builder()
                 .id(request.id())
@@ -65,7 +67,7 @@ public class AccountService implements AccountCommand, AccountQuery {
                 .id(query.id())
                 .build();
 
-        return Optional.ofNullable(port.get(account))
+        return port.get(account)
                 .orElseThrow(BizException.NoneExists::new);
     }
 
