@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
@@ -19,8 +18,7 @@ import java.util.UUID;
 @Comment("회원")
 public class Account extends BaseTimeEntity {
     @Id
-    @GeneratedValue
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Comment("ID")
     private UUID id;
 
