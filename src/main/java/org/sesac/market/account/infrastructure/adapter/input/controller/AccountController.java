@@ -6,7 +6,6 @@ import org.sesac.market.account.application.dto.response.ReadAccountResponse;
 import org.sesac.market.account.application.dto.response.ReadAccountsResponse;
 import org.sesac.market.account.application.port.input.AccountCommand;
 import org.sesac.market.account.application.port.input.AccountQuery;
-import org.sesac.market.account.infrastructure.adapter.input.converter.AccountDomainConverter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -26,7 +25,6 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 public class AccountController implements AccountApiDocs {
     private final AccountCommand command;
     private final AccountQuery query;
-    private final AccountDomainConverter mapper;
 
     @Override
     @PostMapping
@@ -77,13 +75,11 @@ public class AccountController implements AccountApiDocs {
 
         var accounts = query.read(request);
 
-        var dtos = accounts.map(mapper::toDTO);
-
-        var response = dtos.map(dto -> ReadAccountsResponse.builder()
-                .email(dto.getEmail())
-                .name(dto.getName())
-                .createdDate(dto.getCreatedDate())
-                .modifiedDate(dto.getModifiedDate())
+        var response = accounts.map(account -> ReadAccountsResponse.builder()
+                .email(account.getEmail())
+                .name(account.getName())
+                .createdDate(account.getCreatedDate())
+                .modifiedDate(account.getModifiedDate())
                 .build());
 
         return ResponseEntity.ok(response);
@@ -98,13 +94,12 @@ public class AccountController implements AccountApiDocs {
 
         var account = query.read(request);
 
-        var dto = mapper.toDTO(account);
-
         var response = ReadAccountResponse.builder()
-                .email(dto.getEmail())
-                .name(dto.getName())
-                .createdDate(dto.getCreatedDate())
-                .modifiedDate(dto.getModifiedDate())
+                .id(account.getId())
+                .email(account.getEmail())
+                .name(account.getName())
+                .createdDate(account.getCreatedDate())
+                .modifiedDate(account.getModifiedDate())
                 .build();
 
         return ResponseEntity.ok(response);

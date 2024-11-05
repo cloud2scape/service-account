@@ -1,25 +1,45 @@
 package org.sesac.market.account.domain.model;
 
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.UuidGenerator;
 
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Builder
 @Getter
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Account {
+@Entity
+@Table(name = "account")
+@Comment("회원")
+public class Account extends BaseTimeEntity {
+    @Id
+    @GeneratedValue
+    @UuidGenerator
+    @Comment("ID")
     private UUID id;
+
+    @Column(unique = true)
+    @Comment("이메일")
     private String email;
+
+    @Comment("이름")
     private String name;
-    private OffsetDateTime createdDate;
-    private OffsetDateTime modifiedDate;
 
     public static Account create(String name, String email, String picture) {
         return Account.builder()
                 .name(name)
                 .email(email)
                 .build();
+    }
+
+    public Account update(Account account) {
+        this.name = account.name != null ? account.name : this.name;
+        return this;
     }
 }
