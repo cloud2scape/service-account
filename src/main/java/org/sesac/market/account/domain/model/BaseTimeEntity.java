@@ -1,4 +1,4 @@
-package org.sesac.market.account.infrastructure.adapter.output.persistence;
+package org.sesac.market.account.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
