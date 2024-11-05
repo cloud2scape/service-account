@@ -1,5 +1,6 @@
 package org.sesac.market.account.infrastructure.adapter.input.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sesac.market.account.application.dto.request.*;
 import org.sesac.market.account.application.dto.response.ReadAccountResponse;
@@ -28,7 +29,7 @@ public class AccountController implements AccountApiDocs {
 
     @Override
     @PostMapping
-    public ResponseEntity<String> createAccount(@RequestBody CreateAccountRequest request) {
+    public ResponseEntity<String> createAccount(@Valid @RequestBody CreateAccountRequest request) {
         var account = command.create(request);
 
         UUID id = account.getId();
@@ -44,7 +45,7 @@ public class AccountController implements AccountApiDocs {
 
     @Override
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateAccount(@PathVariable UUID id, @RequestBody UpdateAccountRequest request) {
+    public ResponseEntity<Void> updateAccount(@PathVariable UUID id, @Valid @RequestBody UpdateAccountRequest request) {
         command.update(request.toBuilder()
                 .id(id)
                 .build());
