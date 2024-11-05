@@ -18,8 +18,7 @@ public class AccountPersistenceAdapter implements AccountPort {
 
     @Override
     public Account save(Account account) {
-        return Optional.of(repository.save(account))
-                .orElseThrow(IllegalAccessError::new);
+        return repository.save(account);
     }
 
     @Override
