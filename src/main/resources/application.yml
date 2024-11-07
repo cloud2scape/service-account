@@ -5,6 +5,7 @@ spring:
     import:
       - "optional:classpath:/config/cloud.yml"
       - "optional:classpath:/config/database.yml"
+      - "optional:classpath:/config/session.yml"
 
   profiles:
     active: ${PROFILE:dev}
