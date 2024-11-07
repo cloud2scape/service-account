@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -44,6 +45,7 @@ public class AccountController implements AccountApiDocs {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("{id}")
     public ResponseEntity<Void> updateAccount(@PathVariable UUID id, @Valid @RequestBody UpdateAccountRequest request) {
         command.update(request.toBuilder()
@@ -54,6 +56,7 @@ public class AccountController implements AccountApiDocs {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable UUID id) {
         var request = DeleteAccountRequest.builder()
@@ -66,6 +69,7 @@ public class AccountController implements AccountApiDocs {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     @GetMapping
     public ResponseEntity<Page<ReadAccountsResponse>> getAccounts(
             @PageableDefault(sort = "createdDate", direction = DESC) Pageable pageable
@@ -87,6 +91,7 @@ public class AccountController implements AccountApiDocs {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("{id}")
     public ResponseEntity<ReadAccountResponse> getAccountById(@PathVariable UUID id) {
         var request = ReadAccountRequest.builder()
