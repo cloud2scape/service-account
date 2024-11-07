@@ -4,3 +4,9 @@ spring:
     username: ${ACCOUNT_DB_USER:root}
     password: ${ACCOUNT_DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: ${REDISHOST}
+      username: ${REDISUSER}
+      password: ${REDISPASSWORD}
+      port: ${REDISPORT}
