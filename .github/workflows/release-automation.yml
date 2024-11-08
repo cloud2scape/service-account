@@ -2,8 +2,7 @@ name: release images using semantic tag versioning
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, develop ]
 
 jobs:
   setup-build-deploy:
