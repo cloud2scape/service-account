@@ -6,16 +6,16 @@ spring:
   jpa:
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create-drop
-  sql:
-    init:
-      mode: always
+      ddl-auto: update
 
 eureka:
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
+
+server:
+  port: 8661
