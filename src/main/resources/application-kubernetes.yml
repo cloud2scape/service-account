@@ -1,7 +1,8 @@
 spring:
   config:
     activate:
-      on-profile: prod
+      on-profile: kubernetes
+      on-cloud-platform: kubernetes
 
   jpa:
     show-sql: false
@@ -13,3 +14,6 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     enabled: false
+
+server:
+  port: 80

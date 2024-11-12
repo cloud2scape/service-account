@@ -10,3 +10,7 @@ spring:
       username: ${REDISUSER}
       password: ${REDISPASSWORD}
       port: ${REDISPORT}
+
+  sql:
+    init:
+      mode: ${SQL_INIT_MODE:never}

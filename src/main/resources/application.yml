@@ -29,3 +29,7 @@ spring:
     always-use-message-format: true
     use-code-as-default-message: true
     fallback-to-system-locale: true
+
+logging:
+  level:
+    root: debug
