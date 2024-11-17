@@ -2,6 +2,12 @@ spring:
   config:
     activate:
       on-profile: dev
-  cloud:
-    config:
-      enabled: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka

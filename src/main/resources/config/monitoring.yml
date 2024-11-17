@@ -1,0 +1,36 @@
+management:
+  info:
+    os:
+      enabled: true
+    java:
+      enabled: true
+    process:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
+    caches:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  zipkin:
+    tracing:
+      endpoint: http://${ZIPKIN_ENDPOINT:localhost}:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.loadbalancer: TRACE
+    root: info
