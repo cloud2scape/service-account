@@ -14,9 +14,16 @@ management:
     health:
       enabled: true
       show-details: always
+      probes:
+        enabled: true
     info:
       enabled: true
     caches:
+      enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
       enabled: true
   prometheus:
     metrics:
