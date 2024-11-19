@@ -1,9 +1,15 @@
 spring:
   datasource:
-    url: "jdbc:mysql://${ACCOUNT_DB_HOST:localhost}:${ACCOUNT_DB_PORT:3316}/${ACCOUNT_DB_DATABASE:account}"
-    username: ${ACCOUNT_DB_USER:root}
-    password: ${ACCOUNT_DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      source:
+        url: jdbc:mysql://${ACCOUNT_DB_HOST:localhost}:${ACCOUNT_DB_PORT:3318}/${ACCOUNT_DB_DATABASE:product}
+        username: ${ACCOUNT_DB_USER:root}
+        password: ${ACCOUNT_DB_PASSWORD:root}
+      replica:
+        url: jdbc:mysql://${ACCOUNT_DB_REPLICA_HOST:localhost}:${ACCOUNT_DB_REPLICA_PORT:3318}/${ACCOUNT_DB_REPLICA_DATABASE:product}
+        username: ${ACCOUNT_DB_REPLICA_USER:root}
+        password: ${ACCOUNT_DB_REPLICA_PASSWORD:root}
   data:
     redis:
       host: ${REDISHOST}
