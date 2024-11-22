@@ -8,12 +8,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
+import static org.springframework.data.web.config.EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO;
+
 @Configuration
+@EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)
 @EnableJpaAuditing(dateTimeProviderRef = "auditingDateTimeProvider")
 @EnableTransactionManagement
 public class JpaConfig {
