@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "account")
 @Comment("회원")
-public class Account extends BaseTimeEntity {
+public class Account extends BaseTimeEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Comment("ID")
@@ -28,13 +29,6 @@ public class Account extends BaseTimeEntity {
 
     @Comment("이름")
     private String name;
-
-    public static Account create(String name, String email, String picture) {
-        return Account.builder()
-                .name(name)
-                .email(email)
-                .build();
-    }
 
     public Account update(Account account) {
         this.name = account.name != null ? account.name : this.name;
