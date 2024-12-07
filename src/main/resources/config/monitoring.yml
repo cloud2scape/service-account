@@ -35,6 +35,18 @@ management:
   tracing:
     sampling:
       probability: 1.0
+  otlp:
+    metrics:
+      export:
+        url: http://${OTLP_ENDPOINT:localhost}:4318/v1/metrics
+
+otel:
+  exporter:
+    otlp:
+      protocol: "http/protobuf"
+      endpoint: "https://otlp-gateway-prod-us-east-0.grafana.net/otlp"
+      headers:
+        "Authorization": "Basic ${OTLP_TOKEN}"
 
 logging:
   level:
